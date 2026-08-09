@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study of Two Datasets from Different Domains</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <header class="page-header">
+    <h1>Study of Two Datasets from Different Domains</h1>
+    <p>Assignment Submission &mdash; Pattern Recognition and Recomendation systems</p>
+  </header>
+
+  <main>
+
+    <!-- ==================== DATASET 1: HEART DISEASE (HEALTHCARE) ==================== -->
+    <section class="dataset" id="dataset-1">
+      <h2>1. UCI Heart Disease Dataset <span class="tags">Domain: Healthcare</span></h2>
+      <p class="meta-line"><span>Source:</span> UCI Machine Learning Repository (donated by Robert Detrano, M.D., Ph.D., 1988); records collected from the Cleveland Clinic Foundation (USA), Hungarian Institute of Cardiology (Budapest), V.A. Medical Center (Long Beach), and University Hospital (Zurich/Basel, Switzerland).</p>
+
+      <h3>Purpose</h3>
+      <p>
+        The dataset is used to build classification models that predict the presence or absence of
+        heart disease in a patient from routine clinical and diagnostic measurements. It supports
+        research on early, low-cost, non-invasive screening tools that can assist doctors in
+        identifying at-risk patients before a full cardiac work-up is performed. It is one of the
+        most widely used benchmark datasets in medical machine learning research.
+      </p>
+
+      <h3>Theory / Description</h3>
+      <p>
+        The full repository contains 76 attributes collected across four hospitals, but nearly all
+        published research uses a reduced, standard subset of 14 attributes. The most common version
+        (Cleveland subset) has 303 patient records, while the combined multi-hospital version has
+        920 records. The target variable indicates the presence (1) or absence (0) of heart disease,
+        making this a binary classification problem. The dataset contains a mix of categorical
+        (e.g. chest pain type, sex) and numerical (e.g. cholesterol, resting blood pressure) features.
+      </p>
+
+      <table>
+        <caption>Table 1.1 &mdash; Feature Description (14 attributes used in standard research)</caption>
+        <thead>
+          <tr><th>#</th><th>Feature</th><th>Description</th><th>Type</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>age</td><td>Age of the patient in years</td><td>Numeric</td></tr>
+          <tr><td>2</td><td>sex</td><td>Gender (1 = male, 0 = female)</td><td>Categorical</td></tr>
+          <tr><td>3</td><td>cp</td><td>Chest pain type (4 categories)</td><td>Categorical</td></tr>
+          <tr><td>4</td><td>trestbps</td><td>Resting blood pressure (mm Hg)</td><td>Numeric</td></tr>
+          <tr><td>5</td><td>chol</td><td>Serum cholesterol (mg/dl)</td><td>Numeric</td></tr>
+          <tr><td>6</td><td>fbs</td><td>Fasting blood sugar &gt; 120 mg/dl (1 = true, 0 = false)</td><td>Categorical</td></tr>
+          <tr><td>7</td><td>restecg</td><td>Resting electrocardiographic results</td><td>Categorical</td></tr>
+          <tr><td>8</td><td>thalach</td><td>Maximum heart rate achieved</td><td>Numeric</td></tr>
+          <tr><td>9</td><td>exang</td><td>Exercise-induced angina (1 = yes, 0 = no)</td><td>Categorical</td></tr>
+          <tr><td>10</td><td>oldpeak</td><td>ST depression induced by exercise relative to rest</td><td>Numeric</td></tr>
+          <tr><td>11</td><td>slope</td><td>Slope of the peak exercise ST segment</td><td>Categorical</td></tr>
+          <tr><td>12</td><td>ca</td><td>Number of major vessels (0&ndash;3) colored by fluoroscopy</td><td>Numeric</td></tr>
+          <tr><td>13</td><td>thal</td><td>Thalassemia status (normal / fixed defect / reversible defect)</td><td>Categorical</td></tr>
+          <tr><td>14</td><td>target</td><td>Presence of heart disease (1 = disease, 0 = no disease)</td><td>Class Label</td></tr>
+        </tbody>
+      </table>
+      <p class="meta-line"><span>Total features:</span> 13 predictive attributes + 1 target class label = 14 columns.</p>
+
+      <table>
+        <caption>Table 1.2 &mdash; Work Done by Various Authors and Performance Achieved (Recent Years)</caption>
+        <thead>
+          <tr><th>Author(s) &amp; Year</th><th>Method / Model</th><th>Dataset Variant</th><th>Reported Accuracy</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Mir et al. (2024)</td><td>Random Forest + AdaBoost (hybrid AI framework)</td><td>Heart UCI / Heart Statlog</td><td>93.90% (UCI), 99.48% (Statlog)</td></tr>
+          <tr><td>Shrivastava et al. (2023)</td><td>Hybrid CNN + Bidirectional LSTM</td><td>Cleveland UCI</td><td>96.66%</td></tr>
+          <tr><td>Padilla Rodriguez &amp; Nafea (2024)</td><td>Support Vector Machine (linear kernel), centralized &amp; federated</td><td>Combined UCI (920 records)</td><td>83.30% (centralized SVM), 73.80% (federated SVM)</td></tr>
+          <tr><td>Arooj et al. (2022)</td><td>Deep Convolutional Neural Network (DCNN)</td><td>Heart Disease DB</td><td>91.70%</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ==================== DATASET 2: CIFAR-10 (COMPUTER VISION) ==================== -->
+    <section class="dataset" id="dataset-2">
+      <h2>2. CIFAR-10 Dataset <span class="tags">Domain: Computer Vision</span></h2>
+      <p class="meta-line"><span>Source:</span> Created by Alex Krizhevsky, with Vinod Nair and Geoffrey Hinton, Canadian Institute for Advanced Research (CIFAR) / University of Toronto (2009); a labeled subset of the larger 80 Million Tiny Images dataset.</p>
+
+      <h3>Purpose</h3>
+      <p>
+        CIFAR-10 is a benchmark dataset used to design, train, and evaluate supervised image
+        classification algorithms &mdash; from classical CNNs to modern attention-based and
+        interpretable architectures. Because the images are small and the dataset is balanced,
+        it is widely used to quickly prototype and compare new deep learning and machine learning
+        architectures before scaling to larger, real-world image datasets.
+      </p>
+
+      <h3>Theory / Description</h3>
+      <p>
+        The dataset consists of 60,000 colour images of size 32&times;32 pixels, evenly split into
+        10 mutually exclusive classes (6,000 images per class). It is divided into 50,000 training
+        images and 10,000 test images. Each image has 3 colour channels (RGB), so every image can
+        be represented as a flat feature vector of 32 &times; 32 &times; 3 = 3,072 pixel intensity
+        values, in addition to its single class label. Its small size and low resolution make it
+        computationally cheap while still being non-trivial for classification.
+      </p>
+
+      <table>
+        <caption>Table 2.1 &mdash; Feature Description</caption>
+        <thead>
+          <tr><th>#</th><th>Feature Group</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Image size</td><td>32 &times; 32 pixels</td></tr>
+          <tr><td>2</td><td>Colour channels</td><td>3 (Red, Green, Blue)</td></tr>
+          <tr><td>3</td><td>Raw pixel features</td><td>3,072 numeric values per image (32&times;32&times;3)</td></tr>
+          <tr><td>4</td><td>Total images</td><td>60,000 (50,000 train / 10,000 test)</td></tr>
+          <tr><td>5</td><td>Images per class</td><td>6,000</td></tr>
+          <tr><td>6</td><td>Target classes (10)</td><td>Airplane, Automobile, Bird, Cat, Deer, Dog, Frog, Horse, Ship, Truck</td></tr>
+        </tbody>
+      </table>
+      <p class="meta-line"><span>Total features:</span> 3,072 raw pixel features per image + 1 categorical target label (10 classes).</p>
+
+      <table>
+        <caption>Table 2.2 &mdash; Work Done by Various Authors and Performance Achieved (Recent Years)</caption>
+        <thead>
+          <tr><th>Author(s) &amp; Year</th><th>Method / Model</th><th>Reported Accuracy</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Gr&oslash;nningsæter, Sm&oslash;rvik &amp; Granmo (2024)</td><td>Tsetlin Machine Composites (interpretable, non-deep-learning)</td><td>82.80% (new state-of-the-art for Tsetlin Machines)</td></tr>
+          <tr><td>Yang et al. (2025)</td><td>Enhanced 6-block CNN with Batch Normalization &amp; Dropout</td><td>84.95%</td></tr>
+          <tr><td>Jordan (tysam-code) (2024)</td><td>"airbench94" &mdash; optimized fast-training CNN</td><td>94.01% (achieved in 3.29 seconds on a single GPU)</td></tr>
+          <tr><td>Lokesh et al. (2024)</td><td>Convolutional Neural Network (CNN)</td><td>Reported high classification accuracy on standard CIFAR-10 split</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ==================== REFERENCES ==================== -->
+    <section id="references">
+      <h2>References</h2>
+      <ol class="ref-list">
+        <li>Detrano, R., et al. "Heart Disease Data Set." UCI Machine Learning Repository, 1988.</li>
+        <li>Mir, A., et al. "A Novel Approach for the Effective Prediction of Cardiovascular Disease Using Applied Artificial Intelligence Techniques." <em>ESC Heart Failure</em>, 2024. PMC11631242.</li>
+        <li>Shrivastava, P., et al. "Hybrid CNN-BiLSTM Model for Heart Disease Prediction on the Cleveland Dataset." 2023 (as cited in KACQ-DCNN, arXiv:2410.07446, 2024).</li>
+        <li>Padilla Rodriguez, M., &amp; Nafea, M. "Centralized and Federated Heart Disease Classification Models Using UCI Dataset and their Shapley-value Based Interpretability." arXiv:2408.06183, 2024.</li>
+        <li>Arooj, S., et al. "Deep Convolutional Neural Network for Heart Disease Prediction." 2022 (as cited in KACQ-DCNN, arXiv:2410.07446, 2024).</li>
+        <li>Krizhevsky, A., Nair, V., &amp; Hinton, G. "The CIFAR-10 Dataset." Canadian Institute for Advanced Research, University of Toronto, 2009.</li>
+        <li>Gr&oslash;nningsæter, Y., Sm&oslash;rvik, H. S., &amp; Granmo, O.-C. "An Optimised Toolbox for Advanced Image Processing with Tsetlin Machine Composites." arXiv:2406.00704, 2024.</li>
+        <li>Yang, et al. "Enhanced CNN Architectures for CIFAR-10 Image Classification." 2025 (as summarized in CIFAR-10 Image Classification Dataset overview, EmergentMind, 2025).</li>
+        <li>Jordan, K. (tysam-code). "94% on CIFAR-10 in 3.29 Seconds on a Single GPU." arXiv:2404.00498, 2024.</li>
+        <li>Lokesh, Y., Rithvik, M., Madhavi, M., Madhu, S., &amp; Rao, K. R. "Image Classification Using CNN with CIFAR-10 Dataset." <em>IJRASET</em>, 2024. DOI: 10.22214/ijraset.2024.61627.</li>
+      </ol>
+    </section>
+
+  </main>
+
+  <footer>
+    Prepared for the assignment on Google Classroom &mdash; Built with Flask.
+  </footer>
+
+</body>
+</html>
