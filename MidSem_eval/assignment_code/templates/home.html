@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Pattern Analysis and Recommender Systems</h1>
+<p>This reproducible demonstration presents the Flask practicals and the saved Python experiments.</p>
+<div class="cards">
+  <a href="{{ url_for('datasets') }}"><strong>II - Two datasets</strong><span>Features, descriptions, stored CSV files and measured performance.</span></a>
+  <a href="{{ url_for('audio') }}"><strong>III - Audio features</strong><span>Twelve playable recordings and sixty timestamped measurements.</span></a>
+  <a href="{{ url_for('bayes') }}"><strong>IV - Bayesian classification</strong><span>Single and multiple feature Iris predictions.</span></a>
+  <a href="{{ url_for('text') }}"><strong>V - Text classification</strong><span>Sentence splitting, cleaning, lemmatization, stemming and Naive Bayes.</span></a>
+  <a href="{{ url_for('risk') }}"><strong>VI - Bayesian risk</strong><span>Three classes, three actions and a visible minimum risk decision.</span></a>
+</div>
+<section id="programs"><h2>Python experiments</h2><div class="cards">
+  <a href="{{ url_for('practical', number=7) }}"><strong>VII - Linear regression</strong><span>Manual gradient descent, fitted line, and held-out error.</span></a>
+  <a href="{{ url_for('practical', number=8) }}"><strong>VIII - Logistic regression</strong><span>Binary and three-class models with training loss curves.</span></a>
+  <a href="{{ url_for('practical', number=9) }}"><strong>IX - Regularization</strong><span>Decision boundaries and performance with and without L2.</span></a>
+  <a href="{{ url_for('practical', number=10) }}"><strong>X - PCA</strong><span>One-dimensional projection, mapped test point, and accuracy.</span></a>
+  <a href="{{ url_for('practical', number=11) }}"><strong>XI - LDA</strong><span>Class-separating projection, mapped test point, and accuracy.</span></a>
+</div></section>
+<p class="note">All reported results are demonstrations; they are not real-world medical or industrial decisions.</p>
+{% endblock %}

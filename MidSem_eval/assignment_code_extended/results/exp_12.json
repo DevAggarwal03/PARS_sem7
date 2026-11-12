@@ -1,0 +1,83 @@
+{
+  "assignment": 12,
+  "title": "Content-based recommendations",
+  "libraries": [
+    "Python",
+    "Flask",
+    "NumPy"
+  ],
+  "methodology": "Ranks books by overlap between genres/authors of well-rated books and catalog features.",
+  "related_files": [
+    "exp_12.py",
+    "app.py",
+    "core.py",
+    "catalog.json",
+    "ratings.csv"
+  ],
+  "inputs": {
+    "reader": "R01"
+  },
+  "results": [
+    {
+      "id": "B03",
+      "title": "A Map of Quiet Rivers",
+      "author": "Mira Sen",
+      "genres": [
+        "Literary",
+        "Nature"
+      ],
+      "pages": 238,
+      "year": 2018,
+      "score": 0.2222
+    },
+    {
+      "id": "B15",
+      "title": "A Study in Lanterns",
+      "author": "Nora Bell",
+      "genres": [
+        "Mystery",
+        "Thriller"
+      ],
+      "pages": 318,
+      "year": 2023,
+      "score": 0.2222
+    },
+    {
+      "id": "B10",
+      "title": "Footpaths of the North",
+      "author": "Asha Rao",
+      "genres": [
+        "Nature",
+        "Adventure"
+      ],
+      "pages": 330,
+      "year": 2021,
+      "score": 0.1
+    },
+    {
+      "id": "B14",
+      "title": "Letters from the Canopy",
+      "author": "Asha Rao",
+      "genres": [
+        "Nature",
+        "Literary"
+      ],
+      "pages": 210,
+      "year": 2019,
+      "score": 0.1
+    },
+    {
+      "id": "B09",
+      "title": "The Hidden Recipe",
+      "author": "Peter Vale",
+      "genres": [
+        "Cooking",
+        "Mystery"
+      ],
+      "pages": 256,
+      "year": 2016,
+      "score": 0.1
+    }
+  ],
+  "terminal_output": "[{'id': 'B03', 'title': 'A Map of Quiet Rivers', 'author': 'Mira Sen', 'genres': ['Literary', 'Nature'], 'pages': 238, 'year': 2018, 'score': 0.2222}, {'id': 'B15', 'title': 'A Study in Lanterns', 'author': 'Nora Bell', 'genres': ['Mystery', 'Thriller'], 'pages': 318, 'year': 2023, 'score': 0.2222}, {'id': 'B10', 'title': 'Footpaths of the North', 'author': 'Asha Rao', 'genres': ['Nature', 'Adventure'], 'pages': 330, 'year': 2021, 'score': 0.1}, {'id': 'B14', 'title': 'Letters from the Canopy', 'author': 'Asha Rao', 'genres': ['Nature', 'Literary'], 'pages': 210, 'year': 2019, 'score': 0.1}, {'id': 'B09', 'title': 'The Hidden Recipe', 'author': 'Peter Vale', 'genres': ['Cooking', 'Mystery'], 'pages': 256, 'year': 2016, 'score': 0.1}]"
+}

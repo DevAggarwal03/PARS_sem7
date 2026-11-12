@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Machine audio | PARS{% endblock %}
+{% block content %}
+<h1>Practical III - Features from twelve machine recordings</h1>
+<p>Objective: describe and compare recorded machine sounds, including changes within each clip. These are twelve separate, real five-second ESC-50 recordings from six sound types, with two independent sources per type. They are examples of sounds, not evidence of machine faults.</p>
+<p><strong>From recording to results:</strong> SciPy resamples each checked 44.1 kHz mono WAV to 16 kHz mono. We divide it into five one-second windows, calculate four features with NumPy, and use Flask to display the audio, recording summary, selected measurements and Matplotlib plots.</p>
+<p><strong>What is sampled?</strong> Each recording has five one-second windows. At 16,000 samples per second, a window contains 16,000 amplitude measurements and a whole clip contains 80,000. Twelve recordings give 60 timestamped feature rows.</p>
+<p><strong>Why these features?</strong> Maximum amplitude records the strongest absolute sample in a window; RMS summarizes average signal strength; zero-crossing rate describes sign-change activity; spectral centroid describes frequency balance. Together they summarize different properties that are difficult to compare from raw waveforms alone. Microphone distance, recording gain, noise and bandwidth also affect them, so a single value cannot diagnose a fault.</p>
+
+<section>
+<h2>All twelve recordings</h2>
+<p class="note">The values below are means across each recording's five windows. Listen and inspect the five timestamped rows before interpreting a sound.</p>
+<div class="table-scroll"><table><thead><tr><th>Machine sound</th><th>Recording and playback</th><th>Mean maximum amplitude</th><th>Mean RMS</th><th>Mean ZCR</th><th>Mean centroid</th><th>Source credit</th><th>Inspect</th></tr></thead><tbody>
+{% for clip in clips %}<tr{% if clip.id == selected.id %} class="selected-row"{% endif %}>
+<td>{{ clip.label }}</td>
+<td><small>{{ clip.filename }}</small><audio class="clip-player" controls preload="metadata" src="{{ url_for('static', filename='media/esc50/' ~ clip.filename) }}"></audio></td>
+<td>{{ '%.4f'|format(clip.max_amplitude) }}</td><td>{{ '%.4f'|format(clip.rms) }}</td><td>{{ '%.4f'|format(clip.zcr) }}</td><td>{{ '%.1f'|format(clip.centroid) }} Hz</td>
+<td><a href="{{ clip.original_url }}">{{ clip.author }}</a> ({{ clip.clip_license }})</td>
+<td><a href="{{ url_for('audio', clip=clip.id) }}">View windows</a></td>
+</tr>{% endfor %}
+</tbody></table></div>
+<p class="note">ESC-50 dataset: CC BY-NC 3.0. Original recording credits and source checksums are saved in the project manifest.</p>
+</section>
+
+<section>
+<h2>Selected recording: {{ selected.label }}</h2>
+<p><strong>{{ selected.filename }}</strong> · original recording by <a href="{{ selected.original_url }}">{{ selected.author }}</a> · clip licence {{ selected.clip_license }}.</p>
+<audio controls src="{{ url_for('static', filename='media/esc50/' ~ selected.filename) }}"></audio>
+<img class="plot" src="{{ url_for('static', filename='plots/task_3_' ~ selected.id ~ '.png') }}" alt="Maximum amplitude, RMS, zero-crossing rate, and spectral centroid for five windows of the selected recording">
+<div class="table-scroll"><table><thead><tr><th>Time (s)</th><th>Maximum amplitude</th><th>RMS</th><th>Zero-crossing rate</th><th>Spectral centroid (Hz)</th></tr></thead><tbody>
+{% for row in rows %}<tr><td>{{ row.start }}-{{ row.end }}</td><td>{{ '%.4f'|format(row.max_amplitude) }}</td><td>{{ '%.4f'|format(row.rms) }}</td><td>{{ '%.4f'|format(row.zcr) }}</td><td>{{ '%.1f'|format(row.centroid) }}</td></tr>{% endfor %}
+</tbody></table></div>
+</section>
+{% endblock %}

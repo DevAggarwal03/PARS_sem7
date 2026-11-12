@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}Practical {{ number }} | PARS{% endblock %}
+{% block content %}
+<p class="eyebrow">Python experiment · Practical {{ number }}</p>
+{% if number == 7 %}
+<h1>VII — Linear regression with gradient descent</h1>
+<p><strong>Assignment aim:</strong> implement Linear regression in python (no inbuild function should be used) to find optimized parameters using Gradient descent for any application and Plot Gradient Descent curve.</p>
+<section><h2>What the program does</h2>
+<p>It predicts Iris petal width from petal length. It reserves 20% of flowers for testing, scales petal length using training data, and manually updates the line's intercept and slope to reduce mean squared error.</p>
+<p class="formula">Prediction: width = intercept + slope × scaled petal length</p>
+<p class="formula">Weight update: weights ← weights − 0.05 × MSE gradient</p></section>
+<section><h2>Measured result</h2>
+<table><tr><th>Measure</th><th>Saved value</th></tr>
+<tr><td>Intercept, scaled input</td><td>{{ '%.4f'|format(result.intercept_scaled) }}</td></tr>
+<tr><td>Slope, scaled input</td><td>{{ '%.4f'|format(result.slope_scaled) }}</td></tr>
+<tr><td>Initial → final training MSE</td><td>{{ '%.4f'|format(result.initial_loss) }} → {{ '%.4f'|format(result.final_loss) }}</td></tr>
+<tr><td>Held-out test MSE</td><td>{{ '%.4f'|format(result.test_mse) }}</td></tr></table>
+<p>The first plot compares held-out measurements with predictions; the second shows the falling training loss.</p>
+<img class="plot" src="{{ url_for('static', filename='plots/task_7_linear.png') }}" alt="Held-out petal widths and linear regression gradient descent curve"></section>
+{% elif number == 8 %}
+<h1>VIII — Binary and multiclass logistic regression</h1>
+<p><strong>Assignment aim:</strong> implement Logistic regression for binary class and multiclass classification in python (no inbuild function should be used) to find optimized parameters using Gradient descent for any application and Plot Gradient Descent curve.</p>
+<section><h2>What the program does</h2>
+<p>Both models use Iris petal length and width. The binary model predicts setosa versus other species with sigmoid. The three-class model predicts setosa, versicolor, or virginica with softmax. Their losses, gradients, and weight updates are coded directly with NumPy.</p>
+<p class="formula">Binary probability = sigmoid(weighted measurements); three-class probabilities = softmax(three scores)</p>
+<p class="formula">Weight update: weights ← weights − 0.1 × cross-entropy gradient</p></section>
+<section><h2>Measured result</h2>
+<table><tr><th>Model</th><th>Training loss, start → finish</th><th>Held-out accuracy</th></tr>
+<tr><td>Setosa versus not setosa</td><td>{{ '%.4f'|format(result.binary_initial_loss) }} → {{ '%.4f'|format(result.binary_final_loss) }}</td><td>{{ '%.2f'|format(100 * result.binary_test_accuracy) }}%</td></tr>
+<tr><td>Three Iris species</td><td>{{ '%.4f'|format(result.multiclass_initial_loss) }} → {{ '%.4f'|format(result.multiclass_final_loss) }}</td><td>{{ '%.2f'|format(100 * result.multiclass_test_accuracy) }}%</td></tr></table>
+<p>The two curves show training cross-entropy over gradient steps. Accuracy is measured separately on the 20% held-out test split.</p>
+<img class="plot" src="{{ url_for('static', filename='plots/task_8_logistic.png') }}" alt="Binary and three-class logistic regression training loss curves"></section>
+{% elif number == 9 %}
+<h1>IX — Regularization and decision boundaries</h1>
+<p><strong>Assignment aim:</strong> Implement regularization for any application show plots of 1)decision boundary and 2)performance before and after applying regularization.</p>
+<section><h2>What the program does</h2>
+<p>It separates Iris versicolor from virginica using petal length and width plus three quadratic combinations. The same training and test split is used twice: once without regularization and once with an L2 weight penalty. Both models use the manually coded binary logistic trainer.</p>
+<p class="formula">L2 training objective = cross-entropy + penalty × sum(non-intercept weights²) ÷ (2 × training count)</p>
+<p>Regularization discourages large weights and can change the shape of the decision boundary.</p></section>
+<section><h2>Measured result</h2>
+<table><tr><th>Model</th><th>Held-out accuracy</th><th>Final training objective</th></tr>
+{% for label, item in result.items() %}<tr><td>{{ label }}</td><td>{{ '%.2f'|format(100 * item.test_accuracy) }}%</td><td>{{ '%.4f'|format(item.final_training_loss) }}</td></tr>{% endfor %}</table>
+<p>Both models reached the same held-out accuracy on this split. The training objectives have different penalty terms, so their final values should not be compared as plain classification errors. The black curves below mark probability 0.5 decision boundaries; dots are held-out flowers.</p>
+<img class="plot" src="{{ url_for('static', filename='plots/task_9_regularization.png') }}" alt="Decision boundaries and held-out accuracy without and with L2 regularization"></section>
+{% endif %}
+<section><h2>Run this experiment</h2>
+<p>From the <code>assignment_code</code> folder, run <code>uv run python run_experiments.py</code>. This regenerates the saved results and figures for Practicals VII–XI.</p>
+<nav class="experiment-links" aria-label="Other Python experiments">{% for next_number in range(7, 12) %}<a href="{{ url_for('practical', number=next_number) }}" {% if next_number == number %}aria-current="page"{% endif %}>{{ next_number }}</a>{% endfor %}</nav></section>
+{% endblock %}

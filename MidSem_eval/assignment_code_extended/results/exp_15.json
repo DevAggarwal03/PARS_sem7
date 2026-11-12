@@ -1,0 +1,84 @@
+{
+  "assignment": 15,
+  "title": "User-based nearest neighbors",
+  "libraries": [
+    "Python",
+    "Flask",
+    "NumPy"
+  ],
+  "methodology": "Adds a similarity-weighted average of neighbor rating deviations to the selected reader's mean rating.",
+  "related_files": [
+    "exp_15.py",
+    "app.py",
+    "core.py",
+    "catalog.json",
+    "ratings.csv"
+  ],
+  "inputs": {
+    "reader": "R01",
+    "neighbors": 3
+  },
+  "results": [
+    {
+      "id": "B03",
+      "title": "A Map of Quiet Rivers",
+      "author": "Mira Sen",
+      "genres": [
+        "Literary",
+        "Nature"
+      ],
+      "pages": 238,
+      "year": 2018,
+      "score": 4.0
+    },
+    {
+      "id": "B14",
+      "title": "Letters from the Canopy",
+      "author": "Asha Rao",
+      "genres": [
+        "Nature",
+        "Literary"
+      ],
+      "pages": 210,
+      "year": 2019,
+      "score": 4.0
+    },
+    {
+      "id": "B15",
+      "title": "A Study in Lanterns",
+      "author": "Nora Bell",
+      "genres": [
+        "Mystery",
+        "Thriller"
+      ],
+      "pages": 318,
+      "year": 2023,
+      "score": 3.8571
+    },
+    {
+      "id": "B10",
+      "title": "Footpaths of the North",
+      "author": "Asha Rao",
+      "genres": [
+        "Nature",
+        "Adventure"
+      ],
+      "pages": 330,
+      "year": 2021,
+      "score": 3.0
+    },
+    {
+      "id": "B05",
+      "title": "Baking on Sundays",
+      "author": "Peter Vale",
+      "genres": [
+        "Cooking",
+        "Lifestyle"
+      ],
+      "pages": 192,
+      "year": 2020,
+      "score": 0.0
+    }
+  ],
+  "terminal_output": "[{'id': 'B03', 'title': 'A Map of Quiet Rivers', 'author': 'Mira Sen', 'genres': ['Literary', 'Nature'], 'pages': 238, 'year': 2018, 'score': 4.0}, {'id': 'B14', 'title': 'Letters from the Canopy', 'author': 'Asha Rao', 'genres': ['Nature', 'Literary'], 'pages': 210, 'year': 2019, 'score': 4.0}, {'id': 'B15', 'title': 'A Study in Lanterns', 'author': 'Nora Bell', 'genres': ['Mystery', 'Thriller'], 'pages': 318, 'year': 2023, 'score': 3.8571}, {'id': 'B10', 'title': 'Footpaths of the North', 'author': 'Asha Rao', 'genres': ['Nature', 'Adventure'], 'pages': 330, 'year': 2021, 'score': 3.0}, {'id': 'B05', 'title': 'Baking on Sundays', 'author': 'Peter Vale', 'genres': ['Cooking', 'Lifestyle'], 'pages': 192, 'year': 2020, 'score': 0.0}]"
+}

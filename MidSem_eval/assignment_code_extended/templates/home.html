@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Book Recommendations</h1>
+<p>Explore recommender methods using a shared local catalog and reader ratings.</p>
+<section id="assignments"><h2>Assignments 12–21</h2><div class="cards">
+{% for number, item in assignments.items() %}
+  <a href="{{ url_for('assignment', number=number) }}"><strong>{{ number }} — {{ item[0] }}</strong><span>{{ item[1] }}</span></a>
+{% endfor %}
+</div></section>
+{% endblock %}

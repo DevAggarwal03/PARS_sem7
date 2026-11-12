@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Datasets | PARS{% endblock %}
+{% block content %}
+<h1>Practical II - Dataset extraction and performance</h1>
+<p>Iris and Wine are loaded from scikit-learn's copies of the UCI datasets and stored as <code>data/iris.csv</code> and <code>data/wine.csv</code>. Gaussian Naive Bayes is evaluated on a stratified 80/20 split using seed 42.</p>
+<img class="plot" src="{{ url_for('static', filename='plots/task_2_accuracy.png') }}" alt="Measured held-out accuracy comparison">
+{% for entry in entries %}
+<section><h2>{{ entry.name }} - {{ entry.rows }} samples, {{ entry.features|length }} features</h2>
+<p>Classes: {{ entry.classes }}. Held-out accuracy: <strong>{{ '%.3f'|format(entry.score) }}</strong></p>
+<table><thead><tr><th>Feature</th><th>Description</th></tr></thead><tbody>
+{% for name, description in entry.features %}<tr><td>{{ name }}</td><td>{{ description }}</td></tr>{% endfor %}
+</tbody></table>
+<h3>First four stored records</h3><pre>{% for row in entry.preview %}{{ row }}
+{% endfor %}</pre></section>
+{% endfor %}
+{% endblock %}

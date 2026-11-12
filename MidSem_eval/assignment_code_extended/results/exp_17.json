@@ -1,0 +1,83 @@
+{
+  "assignment": 17,
+  "title": "Adjusted cosine similarity",
+  "libraries": [
+    "Python",
+    "Flask",
+    "NumPy"
+  ],
+  "methodology": "Centers ratings by reader before measuring similarity between books.",
+  "related_files": [
+    "exp_17.py",
+    "app.py",
+    "core.py",
+    "catalog.json",
+    "ratings.csv"
+  ],
+  "inputs": {
+    "reader": "R01"
+  },
+  "results": [
+    {
+      "id": "B07",
+      "title": "Wild Garden Notes",
+      "author": "Asha Rao",
+      "genres": [
+        "Nature",
+        "Lifestyle"
+      ],
+      "pages": 224,
+      "year": 2023,
+      "score": 4.6
+    },
+    {
+      "id": "B14",
+      "title": "Letters from the Canopy",
+      "author": "Asha Rao",
+      "genres": [
+        "Nature",
+        "Literary"
+      ],
+      "pages": 210,
+      "year": 2019,
+      "score": 4.4279
+    },
+    {
+      "id": "B05",
+      "title": "Baking on Sundays",
+      "author": "Peter Vale",
+      "genres": [
+        "Cooking",
+        "Lifestyle"
+      ],
+      "pages": 192,
+      "year": 2020,
+      "score": 4.2857
+    },
+    {
+      "id": "B12",
+      "title": "Small Plates, Big Flavours",
+      "author": "Peter Vale",
+      "genres": [
+        "Cooking",
+        "Lifestyle"
+      ],
+      "pages": 176,
+      "year": 2024,
+      "score": 4.2857
+    },
+    {
+      "id": "B03",
+      "title": "A Map of Quiet Rivers",
+      "author": "Mira Sen",
+      "genres": [
+        "Literary",
+        "Nature"
+      ],
+      "pages": 238,
+      "year": 2018,
+      "score": 4.1388
+    }
+  ],
+  "terminal_output": "[{'id': 'B07', 'title': 'Wild Garden Notes', 'author': 'Asha Rao', 'genres': ['Nature', 'Lifestyle'], 'pages': 224, 'year': 2023, 'score': 4.6}, {'id': 'B14', 'title': 'Letters from the Canopy', 'author': 'Asha Rao', 'genres': ['Nature', 'Literary'], 'pages': 210, 'year': 2019, 'score': 4.4279}, {'id': 'B05', 'title': 'Baking on Sundays', 'author': 'Peter Vale', 'genres': ['Cooking', 'Lifestyle'], 'pages': 192, 'year': 2020, 'score': 4.2857}, {'id': 'B12', 'title': 'Small Plates, Big Flavours', 'author': 'Peter Vale', 'genres': ['Cooking', 'Lifestyle'], 'pages': 176, 'year': 2024, 'score': 4.2857}, {'id': 'B03', 'title': 'A Map of Quiet Rivers', 'author': 'Mira Sen', 'genres': ['Literary', 'Nature'], 'pages': 238, 'year': 2018, 'score': 4.1388}]"
+}

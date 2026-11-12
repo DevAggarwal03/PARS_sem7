@@ -1,0 +1,560 @@
+{
+  "assignment": 21,
+  "title": "Matrix factorization with SGD",
+  "libraries": [
+    "Python",
+    "Flask",
+    "NumPy"
+  ],
+  "methodology": "Learns reader and book latent factors with regularized stochastic gradient descent to estimate an unknown rating.",
+  "related_files": [
+    "exp_21.py",
+    "app.py",
+    "core.py",
+    "catalog.json",
+    "ratings.csv"
+  ],
+  "inputs": {
+    "reader": "R01",
+    "book_id": "B03",
+    "epochs": 20
+  },
+  "results": {
+    "reader": "R01",
+    "book": {
+      "id": "B03",
+      "title": "A Map of Quiet Rivers",
+      "author": "Mira Sen",
+      "genres": [
+        "Literary",
+        "Nature"
+      ],
+      "pages": 238,
+      "year": 2018
+    },
+    "epochs": 20,
+    "factors": 2,
+    "learning_rate": 0.01,
+    "regularization": 0.02,
+    "observed_count": 56,
+    "mean_rating": 4.2321,
+    "predicted_rating": 4.3674,
+    "display_rating": 4.3674,
+    "was_clipped": false,
+    "history": [
+      {
+        "epoch": 1,
+        "rmse": 0.8089,
+        "squared_error": 36.644,
+        "regularization_penalty": 1.9553,
+        "loss": 19.2996
+      },
+      {
+        "epoch": 2,
+        "rmse": 0.7902,
+        "squared_error": 34.9711,
+        "regularization_penalty": 1.9496,
+        "loss": 18.4604
+      },
+      {
+        "epoch": 3,
+        "rmse": 0.7782,
+        "squared_error": 33.9149,
+        "regularization_penalty": 1.944,
+        "loss": 17.9295
+      },
+      {
+        "epoch": 4,
+        "rmse": 0.7685,
+        "squared_error": 33.0701,
+        "regularization_penalty": 1.9407,
+        "loss": 17.5054
+      },
+      {
+        "epoch": 5,
+        "rmse": 0.7618,
+        "squared_error": 32.4956,
+        "regularization_penalty": 1.94,
+        "loss": 17.2178
+      },
+      {
+        "epoch": 6,
+        "rmse": 0.7562,
+        "squared_error": 32.0231,
+        "regularization_penalty": 1.9442,
+        "loss": 16.9837
+      },
+      {
+        "epoch": 7,
+        "rmse": 0.7522,
+        "squared_error": 31.6824,
+        "regularization_penalty": 1.9446,
+        "loss": 16.8135
+      },
+      {
+        "epoch": 8,
+        "rmse": 0.749,
+        "squared_error": 31.4129,
+        "regularization_penalty": 1.9437,
+        "loss": 16.6783
+      },
+      {
+        "epoch": 9,
+        "rmse": 0.7464,
+        "squared_error": 31.1994,
+        "regularization_penalty": 1.9408,
+        "loss": 16.5701
+      },
+      {
+        "epoch": 10,
+        "rmse": 0.7446,
+        "squared_error": 31.049,
+        "regularization_penalty": 1.9393,
+        "loss": 16.4941
+      },
+      {
+        "epoch": 11,
+        "rmse": 0.7432,
+        "squared_error": 30.9294,
+        "regularization_penalty": 1.9369,
+        "loss": 16.4331
+      },
+      {
+        "epoch": 12,
+        "rmse": 0.7415,
+        "squared_error": 30.7875,
+        "regularization_penalty": 1.9395,
+        "loss": 16.3635
+      },
+      {
+        "epoch": 13,
+        "rmse": 0.7405,
+        "squared_error": 30.7091,
+        "regularization_penalty": 1.938,
+        "loss": 16.3235
+      },
+      {
+        "epoch": 14,
+        "rmse": 0.7396,
+        "squared_error": 30.6301,
+        "regularization_penalty": 1.9384,
+        "loss": 16.2842
+      },
+      {
+        "epoch": 15,
+        "rmse": 0.7388,
+        "squared_error": 30.5671,
+        "regularization_penalty": 1.9376,
+        "loss": 16.2523
+      },
+      {
+        "epoch": 16,
+        "rmse": 0.738,
+        "squared_error": 30.5026,
+        "regularization_penalty": 1.9387,
+        "loss": 16.2206
+      },
+      {
+        "epoch": 17,
+        "rmse": 0.7377,
+        "squared_error": 30.4789,
+        "regularization_penalty": 1.9356,
+        "loss": 16.2072
+      },
+      {
+        "epoch": 18,
+        "rmse": 0.737,
+        "squared_error": 30.4173,
+        "regularization_penalty": 1.937,
+        "loss": 16.1772
+      },
+      {
+        "epoch": 19,
+        "rmse": 0.7364,
+        "squared_error": 30.3659,
+        "regularization_penalty": 1.9388,
+        "loss": 16.1524
+      },
+      {
+        "epoch": 20,
+        "rmse": 0.7361,
+        "squared_error": 30.3465,
+        "regularization_penalty": 1.9378,
+        "loss": 16.1421
+      }
+    ],
+    "observed_matrix": [
+      [
+        5.0,
+        4.0,
+        null,
+        5.0,
+        null,
+        3.0,
+        null,
+        5.0,
+        null,
+        null,
+        4.0,
+        null,
+        4.0,
+        null,
+        null
+      ],
+      [
+        4.0,
+        null,
+        5.0,
+        4.0,
+        null,
+        null,
+        3.0,
+        4.0,
+        null,
+        5.0,
+        null,
+        null,
+        null,
+        5.0,
+        null
+      ],
+      [
+        null,
+        5.0,
+        null,
+        4.0,
+        2.0,
+        null,
+        null,
+        5.0,
+        3.0,
+        null,
+        null,
+        2.0,
+        5.0,
+        null,
+        null
+      ],
+      [
+        3.0,
+        null,
+        4.0,
+        null,
+        null,
+        5.0,
+        null,
+        null,
+        5.0,
+        null,
+        5.0,
+        null,
+        null,
+        3.0,
+        5.0
+      ],
+      [
+        null,
+        4.0,
+        null,
+        null,
+        5.0,
+        null,
+        4.0,
+        null,
+        4.0,
+        5.0,
+        null,
+        5.0,
+        3.0,
+        null,
+        null
+      ],
+      [
+        5.0,
+        null,
+        null,
+        5.0,
+        null,
+        4.0,
+        null,
+        4.0,
+        null,
+        null,
+        5.0,
+        null,
+        4.0,
+        null,
+        4.0
+      ],
+      [
+        null,
+        null,
+        5.0,
+        null,
+        4.0,
+        null,
+        5.0,
+        null,
+        3.0,
+        4.0,
+        null,
+        4.0,
+        null,
+        5.0,
+        null
+      ],
+      [
+        null,
+        4.0,
+        4.0,
+        5.0,
+        null,
+        null,
+        null,
+        5.0,
+        null,
+        3.0,
+        null,
+        null,
+        5.0,
+        4.0,
+        null
+      ]
+    ],
+    "completed_matrix": [
+      [
+        4.1514,
+        4.1883,
+        4.3674,
+        4.607,
+        3.6643,
+        3.919,
+        3.8216,
+        4.5907,
+        3.6786,
+        4.0626,
+        4.5191,
+        3.6749,
+        4.0843,
+        4.1123,
+        4.2948
+      ],
+      [
+        4.1545,
+        4.2026,
+        4.375,
+        4.6165,
+        3.6757,
+        3.9302,
+        3.8298,
+        4.5917,
+        3.6929,
+        4.07,
+        4.5225,
+        3.6795,
+        4.0919,
+        4.1256,
+        4.3047
+      ],
+      [
+        3.8035,
+        3.8322,
+        3.9995,
+        4.2182,
+        3.3533,
+        3.5869,
+        3.499,
+        4.2071,
+        3.365,
+        3.7202,
+        4.1405,
+        3.3661,
+        3.74,
+        3.763,
+        3.9319
+      ],
+      [
+        4.2393,
+        4.2762,
+        4.4596,
+        4.7042,
+        3.7413,
+        4.0014,
+        3.9022,
+        4.688,
+        3.7557,
+        4.1483,
+        4.6148,
+        3.7526,
+        4.1705,
+        4.1986,
+        4.3853
+      ],
+      [
+        4.4839,
+        4.5243,
+        4.7175,
+        4.9763,
+        3.9582,
+        4.2333,
+        4.128,
+        4.9583,
+        3.9738,
+        4.3882,
+        4.8811,
+        3.9694,
+        4.4117,
+        4.4421,
+        4.6392
+      ],
+      [
+        4.2595,
+        4.2949,
+        4.4802,
+        4.7257,
+        3.7579,
+        4.0193,
+        3.92,
+        4.7107,
+        3.7719,
+        4.1675,
+        4.6368,
+        3.7702,
+        4.1897,
+        4.2172,
+        4.4053
+      ],
+      [
+        4.5201,
+        4.558,
+        4.7545,
+        5.015,
+        3.988,
+        4.2654,
+        4.16,
+        4.9989,
+        4.0029,
+        4.4226,
+        4.9206,
+        4.001,
+        4.4462,
+        4.4754,
+        4.675
+      ],
+      [
+        4.1279,
+        4.1599,
+        4.3409,
+        4.5784,
+        3.6399,
+        3.8934,
+        3.7978,
+        4.5656,
+        3.6529,
+        4.0378,
+        4.4936,
+        3.6533,
+        4.0593,
+        4.0847,
+        4.2677
+      ]
+    ],
+    "reader_factors": {
+      "R01": [
+        1.4035,
+        1.4315
+      ],
+      "R02": [
+        1.3321,
+        1.5076
+      ],
+      "R03": [
+        1.3189,
+        1.2773
+      ],
+      "R04": [
+        1.4382,
+        1.4567
+      ],
+      "R05": [
+        1.5126,
+        1.5496
+      ],
+      "R06": [
+        1.4555,
+        1.4528
+      ],
+      "R07": [
+        1.5431,
+        1.5432
+      ],
+      "R08": [
+        1.4255,
+        1.3924
+      ]
+    },
+    "book_factors": {
+      "B01": [
+        1.4902,
+        1.439
+      ],
+      "B02": [
+        1.4269,
+        1.5268
+      ],
+      "B03": [
+        1.5383,
+        1.5428
+      ],
+      "B04": [
+        1.6124,
+        1.6375
+      ],
+      "B05": [
+        1.2562,
+        1.3281
+      ],
+      "B06": [
+        1.3506,
+        1.4135
+      ],
+      "B07": [
+        1.3352,
+        1.3606
+      ],
+      "B08": [
+        1.6642,
+        1.5753
+      ],
+      "B09": [
+        1.2412,
+        1.3528
+      ],
+      "B10": [
+        1.4284,
+        1.4376
+      ],
+      "B11": [
+        1.6227,
+        1.566
+      ],
+      "B12": [
+        1.3068,
+        1.286
+      ],
+      "B13": [
+        1.4353,
+        1.4459
+      ],
+      "B14": [
+        1.4059,
+        1.4943
+      ],
+      "B15": [
+        1.4962,
+        1.5333
+      ]
+    }
+  },
+  "terminal_output": "{'reader': 'R01', 'book': {'id': 'B03', 'title': 'A Map of Quiet Rivers', 'author': 'Mira Sen', 'genres': ['Literary', 'Nature'], 'pages': 238, 'year': 2018}, 'epochs': 20, 'factors': 2, 'learning_rate': 0.01, 'regularization': 0.02, 'observed_count': 56, 'mean_rating': 4.2321, 'predicted_rating': 4.3674, 'display_rating': 4.3674, 'was_clipped': False, 'history': [{'epoch': 1, 'rmse': 0.8089, 'squared_error': np.float64(36.644), 'regularization_penalty': 1.9553, 'loss': np.float64(19.2996)}, {'epoch': 2, 'rmse': 0.7902, 'squared_error': np.float64(34.9711), 'regularization_penalty': 1.9496, 'loss': np.float64(18.4604)}, {'epoch': 3, 'rmse': 0.7782, 'squared_error': np.float64(33.9149), 'regularization_penalty': 1.944, 'loss': np.float64(17.9295)}, {'epoch': 4, 'rmse': 0.7685, 'squared_error': np.float64(33.0701), 'regularization_penalty': 1.9407, 'loss': np.float64(17.5054)}, {'epoch': 5, 'rmse': 0.7618, 'squared_error': np.float64(32.4956), 'regularization_penalty': 1.94, 'loss': np.float64(17.2178)}, {'epoch': 6, 'rmse': 0.7562, 'squared_error': np.float64(32.0231), 'regularization_penalty': 1.9442, 'loss': np.float64(16.9837)}, {'epoch': 7, 'rmse': 0.7522, 'squared_error': np.float64(31.6824), 'regularization_penalty': 1.9446, 'loss': np.float64(16.8135)}, {'epoch': 8, 'rmse': 0.749, 'squared_error': np.float64(31.4129), 'regularization_penalty': 1.9437, 'loss': np.float64(16.6783)}, {'epoch': 9, 'rmse': 0.7464, 'squared_error': np.float64(31.1994), 'regularization_penalty': 1.9408, 'loss': np.float64(16.5701)}, {'epoch': 10, 'rmse': 0.7446, 'squared_error': np.float64(31.049), 'regularization_penalty': 1.9393, 'loss': np.float64(16.4941)}, {'epoch': 11, 'rmse': 0.7432, 'squared_error': np.float64(30.9294), 'regularization_penalty': 1.9369, 'loss': np.float64(16.4331)}, {'epoch': 12, 'rmse': 0.7415, 'squared_error': np.float64(30.7875), 'regularization_penalty': 1.9395, 'loss': np.float64(16.3635)}, {'epoch': 13, 'rmse': 0.7405, 'squared_error': np.float64(30.7091), 'regularization_penalty': 1.938, 'loss': np.float64(16.3235)}, {'epoch': 14, 'rmse': 0.7396, 'squared_error': np.float64(30.6301), 'regularization_penalty': 1.9384, 'loss': np.float64(16.2842)}, {'epoch': 15, 'rmse': 0.7388, 'squared_error': np.float64(30.5671), 'regularization_penalty': 1.9376, 'loss': np.float64(16.2523)}, {'epoch': 16, 'rmse': 0.738, 'squared_error': np.float64(30.5026), 'regularization_penalty': 1.9387, 'loss': np.float64(16.2206)}, {'epoch': 17, 'rmse': 0.7377, 'squared_error': np.float64(30.4789), 'regularization_penalty': 1.9356, 'loss': np.float64(16.2072)}, {'epoch': 18, 'rmse': 0.737, 'squared_error': np.float64(30.4173), 'regularization_penalty': 1.937, 'loss': np.float64(16.1772)}, {'epoch': 19, 'rmse': 0.7364, 'squared_error': np.float64(30.3659), 'regularization_penalty': 1.9388, 'loss': np.float64(16.1524)}, {'epoch': 20, 'rmse': 0.7361, 'squared_error': np.float64(30.3465), 'regularization_penalty': 1.9378, 'loss': np.float64(16.1421)}], 'observed_matrix': [[5.0, 4.0, None, 5.0, None, 3.0, None, 5.0, None, None, 4.0, None, 4.0, None, None], [4.0, None, 5.0, 4.0, None, None, 3.0, 4.0, None, 5.0, None, None, None, 5.0, None], [None, 5.0, None, 4.0, 2.0, None, None, 5.0, 3.0, None, None, 2.0, 5.0, None, None], [3.0, None, 4.0, None, None, 5.0, None, None, 5.0, None, 5.0, None, None, 3.0, 5.0], [None, 4.0, None, None, 5.0, None, 4.0, None, 4.0, 5.0, None, 5.0, 3.0, None, None], [5.0, None, None, 5.0, None, 4.0, None, 4.0, None, None, 5.0, None, 4.0, None, 4.0], [None, None, 5.0, None, 4.0, None, 5.0, None, 3.0, 4.0, None, 4.0, None, 5.0, None], [None, 4.0, 4.0, 5.0, None, None, None, 5.0, None, 3.0, None, None, 5.0, 4.0, None]], 'completed_matrix': [[4.1514, 4.1883, 4.3674, 4.607, 3.6643, 3.919, 3.8216, 4.5907, 3.6786, 4.0626, 4.5191, 3.6749, 4.0843, 4.1123, 4.2948], [4.1545, 4.2026, 4.375, 4.6165, 3.6757, 3.9302, 3.8298, 4.5917, 3.6929, 4.07, 4.5225, 3.6795, 4.0919, 4.1256, 4.3047], [3.8035, 3.8322, 3.9995, 4.2182, 3.3533, 3.5869, 3.499, 4.2071, 3.365, 3.7202, 4.1405, 3.3661, 3.74, 3.763, 3.9319], [4.2393, 4.2762, 4.4596, 4.7042, 3.7413, 4.0014, 3.9022, 4.688, 3.7557, 4.1483, 4.6148, 3.7526, 4.1705, 4.1986, 4.3853], [4.4839, 4.5243, 4.7175, 4.9763, 3.9582, 4.2333, 4.128, 4.9583, 3.9738, 4.3882, 4.8811, 3.9694, 4.4117, 4.4421, 4.6392], [4.2595, 4.2949, 4.4802, 4.7257, 3.7579, 4.0193, 3.92, 4.7107, 3.7719, 4.1675, 4.6368, 3.7702, 4.1897, 4.2172, 4.4053], [4.5201, 4.558, 4.7545, 5.015, 3.988, 4.2654, 4.16, 4.9989, 4.0029, 4.4226, 4.9206, 4.001, 4.4462, 4.4754, 4.675], [4.1279, 4.1599, 4.3409, 4.5784, 3.6399, 3.8934, 3.7978, 4.5656, 3.6529, 4.0378, 4.4936, 3.6533, 4.0593, 4.0847, 4.2677]], 'reader_factors': {'R01': [1.4035, 1.4315], 'R02': [1.3321, 1.5076], 'R03': [1.3189, 1.2773], 'R04': [1.4382, 1.4567], 'R05': [1.5126, 1.5496], 'R06': [1.4555, 1.4528], 'R07': [1.5431, 1.5432], 'R08': [1.4255, 1.3924]}, 'book_factors': {'B01': [1.4902, 1.439], 'B02': [1.4269, 1.5268], 'B03': [1.5383, 1.5428], 'B04': [1.6124, 1.6375], 'B05': [1.2562, 1.3281], 'B06': [1.3506, 1.4135], 'B07': [1.3352, 1.3606], 'B08': [1.6642, 1.5753], 'B09': [1.2412, 1.3528], 'B10': [1.4284, 1.4376], 'B11': [1.6227, 1.566], 'B12': [1.3068, 1.286], 'B13': [1.4353, 1.4459], 'B14': [1.4059, 1.4943], 'B15': [1.4962, 1.5333]}}"
+}

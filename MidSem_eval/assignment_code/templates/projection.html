@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Practical {{ number }} | PARS{% endblock %}
+{% block content %}
+<p class="eyebrow">Python experiment · Practical {{ number }}</p>
+<h1>{{ title }}</h1>
+<p><strong>Assignment aim:</strong> {{ aim }}</p>
+<section><h2>What the program does</h2>
+<p>It reduces two Iris measurements, petal length and petal width, to one coordinate. The direction is fitted using only training flowers. {{ method }} A held-out flower is assigned to the nearest class centre on the reduced line.</p>
+<p class="formula">Reduced coordinate z = (flower − training centre) · direction</p>
+<p class="formula">Point on line = training centre + z × direction</p></section>
+<section><h2>Measured result</h2>
+<table><tr><th>Measure</th><th>Saved value</th></tr>
+<tr><td>Held-out accuracy</td><td>{{ '%.2f'|format(100 * result.test_accuracy) }}%</td></tr>
+<tr><td>Example test flower: petal length, width</td><td>({{ '%.2f'|format(result.test_sample[0]) }}, {{ '%.2f'|format(result.test_sample[1]) }}) cm</td></tr>
+<tr><td>One-dimensional coordinate</td><td>{{ '%.3f'|format(result.reduced_coordinate) }}</td></tr>
+<tr><td>Mapped point on line</td><td>({{ '%.3f'|format(result.mapped_point[0]) }}, {{ '%.3f'|format(result.mapped_point[1]) }})</td></tr>
+<tr><td>Actual → predicted species</td><td>{{ result.actual_class }} → {{ result.predicted_class }}</td></tr></table>
+<p>The red star is the real test flower; the black cross is its geometric projection on the line. The mapped point is for visualization, not a replacement measurement of the flower.</p>
+<img class="plot" src="{{ url_for('static', filename='plots/' ~ plot) }}" alt="{{ label }} line, held-out flower, and mapped point"></section>
+<section><h2>Run this experiment</h2>
+<p>From the <code>assignment_code</code> folder, run <code>uv run python run_experiments.py</code>. This regenerates the saved results and figures for Practicals VII–XI.</p>
+<nav class="experiment-links" aria-label="Other Python experiments">{% for next_number in range(7, 12) %}<a href="{{ url_for('practical', number=next_number) }}" {% if next_number == number %}aria-current="page"{% endif %}>{{ next_number }}</a>{% endfor %}</nav></section>
+{% endblock %}

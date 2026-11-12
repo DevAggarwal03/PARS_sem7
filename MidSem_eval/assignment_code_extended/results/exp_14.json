@@ -1,0 +1,86 @@
+{
+  "assignment": 14,
+  "title": "Cold-start recommendations",
+  "libraries": [
+    "Python",
+    "Flask",
+    "NumPy"
+  ],
+  "methodology": "Uses a selected genre and catalog popularity without requiring reader history.",
+  "related_files": [
+    "exp_14.py",
+    "app.py",
+    "core.py",
+    "catalog.json",
+    "ratings.csv"
+  ],
+  "inputs": {
+    "reader": null,
+    "genres": [
+      "Mystery"
+    ]
+  },
+  "results": [
+    {
+      "id": "B11",
+      "title": "The Midnight Archive",
+      "author": "Nora Bell",
+      "genres": [
+        "Mystery",
+        "Literary"
+      ],
+      "pages": 365,
+      "year": 2020,
+      "score": 4.6667
+    },
+    {
+      "id": "B04",
+      "title": "The Last Observatory",
+      "author": "Leena Das",
+      "genres": [
+        "Science Fiction",
+        "Mystery"
+      ],
+      "pages": 312,
+      "year": 2022,
+      "score": 4.6
+    },
+    {
+      "id": "B15",
+      "title": "A Study in Lanterns",
+      "author": "Nora Bell",
+      "genres": [
+        "Mystery",
+        "Thriller"
+      ],
+      "pages": 318,
+      "year": 2023,
+      "score": 4.5
+    },
+    {
+      "id": "B01",
+      "title": "The Glass Orchard",
+      "author": "Mira Sen",
+      "genres": [
+        "Literary",
+        "Mystery"
+      ],
+      "pages": 286,
+      "year": 2021,
+      "score": 4.25
+    },
+    {
+      "id": "B06",
+      "title": "The Copper Cipher",
+      "author": "Nora Bell",
+      "genres": [
+        "Mystery",
+        "Thriller"
+      ],
+      "pages": 301,
+      "year": 2017,
+      "score": 4.0
+    }
+  ],
+  "terminal_output": "[{'id': 'B11', 'title': 'The Midnight Archive', 'author': 'Nora Bell', 'genres': ['Mystery', 'Literary'], 'pages': 365, 'year': 2020, 'score': 4.6667}, {'id': 'B04', 'title': 'The Last Observatory', 'author': 'Leena Das', 'genres': ['Science Fiction', 'Mystery'], 'pages': 312, 'year': 2022, 'score': 4.6}, {'id': 'B15', 'title': 'A Study in Lanterns', 'author': 'Nora Bell', 'genres': ['Mystery', 'Thriller'], 'pages': 318, 'year': 2023, 'score': 4.5}, {'id': 'B01', 'title': 'The Glass Orchard', 'author': 'Mira Sen', 'genres': ['Literary', 'Mystery'], 'pages': 286, 'year': 2021, 'score': 4.25}, {'id': 'B06', 'title': 'The Copper Cipher', 'author': 'Nora Bell', 'genres': ['Mystery', 'Thriller'], 'pages': 301, 'year': 2017, 'score': 4.0}]"
+}

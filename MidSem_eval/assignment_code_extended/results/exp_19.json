@@ -1,0 +1,98 @@
+{
+  "assignment": 19,
+  "title": "Hybrid recommendations",
+  "libraries": [
+    "Python",
+    "Flask",
+    "NumPy"
+  ],
+  "methodology": "Combines content match, collaborative predictions, and popularity.",
+  "related_files": [
+    "exp_19.py",
+    "app.py",
+    "core.py",
+    "catalog.json",
+    "ratings.csv"
+  ],
+  "inputs": {
+    "reader": "R01"
+  },
+  "results": [
+    {
+      "id": "B03",
+      "title": "A Map of Quiet Rivers",
+      "author": "Mira Sen",
+      "genres": [
+        "Literary",
+        "Nature"
+      ],
+      "pages": 238,
+      "year": 2018,
+      "score": 2.6306,
+      "content_score": 0.2222,
+      "collaborative_score": 4.0,
+      "popularity_score": 4.5
+    },
+    {
+      "id": "B15",
+      "title": "A Study in Lanterns",
+      "author": "Nora Bell",
+      "genres": [
+        "Mystery",
+        "Thriller"
+      ],
+      "pages": 318,
+      "year": 2023,
+      "score": 2.6306,
+      "content_score": 0.2222,
+      "collaborative_score": 4.0,
+      "popularity_score": 4.5
+    },
+    {
+      "id": "B14",
+      "title": "Letters from the Canopy",
+      "author": "Asha Rao",
+      "genres": [
+        "Nature",
+        "Literary"
+      ],
+      "pages": 210,
+      "year": 2019,
+      "score": 2.2875,
+      "content_score": 0.1,
+      "collaborative_score": 4.0,
+      "popularity_score": 4.25
+    },
+    {
+      "id": "B10",
+      "title": "Footpaths of the North",
+      "author": "Asha Rao",
+      "genres": [
+        "Nature",
+        "Adventure"
+      ],
+      "pages": 330,
+      "year": 2021,
+      "score": 1.9375,
+      "content_score": 0.1,
+      "collaborative_score": 3.0,
+      "popularity_score": 4.25
+    },
+    {
+      "id": "B09",
+      "title": "The Hidden Recipe",
+      "author": "Peter Vale",
+      "genres": [
+        "Cooking",
+        "Mystery"
+      ],
+      "pages": 256,
+      "year": 2016,
+      "score": 0.8125,
+      "content_score": 0.1,
+      "collaborative_score": 0.0,
+      "popularity_score": 3.75
+    }
+  ],
+  "terminal_output": "[{'id': 'B03', 'title': 'A Map of Quiet Rivers', 'author': 'Mira Sen', 'genres': ['Literary', 'Nature'], 'pages': 238, 'year': 2018, 'score': 2.6306, 'content_score': 0.2222, 'collaborative_score': 4.0, 'popularity_score': 4.5}, {'id': 'B15', 'title': 'A Study in Lanterns', 'author': 'Nora Bell', 'genres': ['Mystery', 'Thriller'], 'pages': 318, 'year': 2023, 'score': 2.6306, 'content_score': 0.2222, 'collaborative_score': 4.0, 'popularity_score': 4.5}, {'id': 'B14', 'title': 'Letters from the Canopy', 'author': 'Asha Rao', 'genres': ['Nature', 'Literary'], 'pages': 210, 'year': 2019, 'score': 2.2875, 'content_score': 0.1, 'collaborative_score': 4.0, 'popularity_score': 4.25}, {'id': 'B10', 'title': 'Footpaths of the North', 'author': 'Asha Rao', 'genres': ['Nature', 'Adventure'], 'pages': 330, 'year': 2021, 'score': 1.9375, 'content_score': 0.1, 'collaborative_score': 3.0, 'popularity_score': 4.25}, {'id': 'B09', 'title': 'The Hidden Recipe', 'author': 'Peter Vale', 'genres': ['Cooking', 'Mystery'], 'pages': 256, 'year': 2016, 'score': 0.8125, 'content_score': 0.1, 'collaborative_score': 0.0, 'popularity_score': 3.75}]"
+}

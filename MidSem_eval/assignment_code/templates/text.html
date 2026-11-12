@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Text pipeline | PARS{% endblock %}
+{% block content %}
+<h1>Practical V - Text processing and Bayesian classification</h1>
+<p>The small labelled Sports, Technology and Health corpus is demonstration data. The test sentence is classified using multinomial Naive Bayes.</p>
+<form method="post"><label>Paragraph<textarea name="paragraph" rows="3">{{ paragraph }}</textarea></label><label>Separate test sentence<input name="test_sentence" value="{{ test_sentence }}"></label><button>Process and classify</button></form>
+<table><tr><th>Stage</th><th>Output</th></tr><tr><td>Sentences</td><td>{{ steps.sentences|join(' | ') }}</td></tr><tr><td>Word tokens</td><td>{{ steps.tokens|join(', ') }}</td></tr><tr><td>After stop words</td><td>{{ steps.filtered|join(', ') }}</td></tr><tr><td>Lemmas</td><td>{{ steps.lemmas|join(', ') }}</td></tr><tr><td>Stems</td><td>{{ steps.stems|join(', ') }}</td></tr></table>
+{% if result %}<div class="result"><h2>Test sentence: {{ result.prediction }}</h2><table><tr><th>Class</th><th>Probability</th></tr>{% for name, value in result.probabilities.items() %}<tr><td>{{ name }}</td><td>{{ '%.4f'|format(value) }}</td></tr>{% endfor %}</table></div>{% endif %}
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block title %}{{ number }} — {{ title }}{% endblock %}
+{% block content %}
+<p class="eyebrow">Assignment {{ number }}</p><h1>{{ title }}</h1><p>{{ description }}</p>
+<form method="get" class="controls">
+  {% if number not in [14, 20] %}<label>Reader<select name="reader">{% for item in readers %}<option value="{{ item }}" {% if reader == item %}selected{% endif %}>{{ item }}</option>{% endfor %}</select></label>{% endif %}
+  {% if number == 21 %}<label>Book to predict<select name="book_id">{% for book in unknown_books %}<option value="{{ book.id }}" {% if book.id == target_book %}selected{% endif %}>{{ book.title }} — {{ book.author }}</option>{% endfor %}</select></label><label>Training epochs<input type="number" name="epochs" min="3" max="100" value="{{ epochs }}" required></label>{% endif %}
+  {% if number in [14, 20] %}<label>Preferred genre<select name="genre"><option value="">Any genre</option>{% for item in genres %}<option value="{{ item }}" {% if genre == item %}selected{% endif %}>{{ item }}</option>{% endfor %}</select></label>{% endif %}
+  {% if number == 18 %}<label>Book status<select name="status"><option value="unseen" {% if status == 'unseen' %}selected{% endif %}>Not yet read</option><option value="seen" {% if status == 'seen' %}selected{% endif %}>Already read</option></select></label>{% endif %}
+  {% if number == 20 %}<label>Preferred author<select name="author"><option value="">Any author</option>{% for item in authors %}<option value="{{ item }}" {% if author == item %}selected{% endif %}>{{ item }}</option>{% endfor %}</select></label><label>Maximum pages<input type="number" min="1" max="1000" name="max_pages" value="{{ max_pages }}"></label>{% endif %}
+  <button type="submit">{% if number == 21 %}Run factorization{% else %}Show recommendations{% endif %}</button>
+</form>
+{% if number == 20 %}
+<section class="weight-panel"><h2>Scoring weights</h2>
+<p>Adjust how much each preference affects the ranking. The entered weights are scaled proportionally to sum to 1.</p>
+<form method="get" class="weight-form">
+  <input type="hidden" name="genre" value="{{ genre }}"><input type="hidden" name="author" value="{{ author }}"><input type="hidden" name="max_pages" value="{{ max_pages }}">
+  <label>Genre weight<input type="number" name="genre_weight" min="0" max="1" step="0.05" value="{{ weights.genre_weight }}" required></label>
+  <label>Author weight<input type="number" name="author_weight" min="0" max="1" step="0.05" value="{{ weights.author_weight }}" required></label>
+  <label>Page-count weight<input type="number" name="length_weight" min="0" max="1" step="0.05" value="{{ weights.length_weight }}" required></label>
+  <button type="submit">Update weights</button>
+</form>
+</section>
+{% endif %}
+{% if number == 19 %}
+<section class="weight-panel"><h2>Recommendation weights</h2>
+<p>Set the contribution of content match, similar-reader ratings, and overall popularity. The entered weights are scaled proportionally to sum to 1.</p>
+<form method="get" class="weight-form">
+  <input type="hidden" name="reader" value="{{ reader }}">
+  <label>Content weight<input type="number" name="content_weight" min="0" max="1" step="0.05" value="{{ hybrid_weights.content_weight }}" required></label>
+  <label>Collaborative weight<input type="number" name="collaborative_weight" min="0" max="1" step="0.05" value="{{ hybrid_weights.collaborative_weight }}" required></label>
+  <label>Popularity weight<input type="number" name="popularity_weight" min="0" max="1" step="0.05" value="{{ hybrid_weights.popularity_weight }}" required></label>
+  <button type="submit">Update weights</button>
+</form>
+</section>
+{% endif %}
+{% if number == 21 and factorization %}
+<section class="factorization-summary"><h2>Predicted rating</h2>
+<p><strong>{{ factorization.reader }}</strong> — <strong>{{ factorization.book.title }}</strong>: <strong>{{ factorization.display_rating }} / 5</strong>{% if factorization.was_clipped %} (raw estimate {{ factorization.predicted_rating }}, limited to the 1–5 rating scale){% endif %}</p>
+<p>The model used {{ factorization.observed_count }} recorded ratings, {{ factorization.factors }} latent factors, {{ factorization.epochs }} epochs, learning rate {{ factorization.learning_rate }}, and regularization {{ factorization.regularization }}. Mean observed rating: {{ factorization.mean_rating }}. Final training RMSE: {{ factorization.history[-1].rmse }}.</p>
+<h3>Method used</h3>
+<p>Represent the rating matrix as <strong>R ≈ P Qᵀ</strong>. A predicted rating is the dot product <strong>pᵤ · qᵢ</strong>. For each known rating, error is <strong>eᵤᵢ = rᵤᵢ − pᵤ · qᵢ</strong>.</p>
+<p>With regularization λ, update the factors using the previous values: <strong>pᵤ ← pᵤ + α(eᵤᵢqᵢ − λpᵤ)</strong> and <strong>qᵢ ← qᵢ + α(eᵤᵢpᵤ − λqᵢ)</strong>. The factors start near √(mean rating ÷ factor count), with small seeded random variation. For each epoch, observed ratings are shuffled and updated one at a time. The epoch loss is half the squared rating error plus half the regularization penalty.</p>
+</section>
+<section><h2>Training progress</h2><div class="table-scroll"><table><thead><tr><th>Epoch</th><th>Loss</th><th>RMSE</th><th>Squared error</th><th>Regularization penalty</th></tr></thead><tbody>{% for item in factorization.history %}<tr><td>{{ item.epoch }}</td><td>{{ item.loss }}</td><td>{{ item.rmse }}</td><td>{{ item.squared_error }}</td><td>{{ item.regularization_penalty }}</td></tr>{% endfor %}</tbody></table></div></section>
+<section><h2>Observed rating matrix</h2><p>Blank cells are ratings not present in the local data.</p><div class="table-scroll"><table><thead><tr><th>Reader</th>{% for book in books %}<th>{{ book.title }}</th>{% endfor %}</tr></thead><tbody>{% for user_index in range(readers|length) %}<tr><th>{{ readers[user_index] }}</th>{% for book_index in range(books|length) %}<td>{% if factorization.observed_matrix[user_index][book_index] is not none %}{{ factorization.observed_matrix[user_index][book_index] }}{% endif %}</td>{% endfor %}</tr>{% endfor %}</tbody></table></div></section>
+<section><h2>Completed rating estimates</h2><p>Known values are retained; blank cells use the learned factors to estimate ratings.</p><div class="table-scroll"><table><thead><tr><th>Reader</th>{% for book in books %}<th>{{ book.title }}</th>{% endfor %}</tr></thead><tbody>{% for user_index in range(readers|length) %}<tr><th>{{ readers[user_index] }}</th>{% for book_index in range(books|length) %}<td>{% if factorization.observed_matrix[user_index][book_index] is not none %}{{ factorization.observed_matrix[user_index][book_index] }}{% else %}{{ factorization.completed_matrix[user_index][book_index] }}{% endif %}</td>{% endfor %}</tr>{% endfor %}</tbody></table></div></section>
+<section><h2>Learned reader factors (P)</h2><div class="table-scroll"><table><thead><tr><th>Reader</th>{% for factor in range(factorization.factors) %}<th>Factor {{ factor + 1 }}</th>{% endfor %}</tr></thead><tbody>{% for reader_name, values in factorization.reader_factors.items() %}<tr><th>{{ reader_name }}</th>{% for value in values %}<td>{{ value }}</td>{% endfor %}</tr>{% endfor %}</tbody></table></div></section>
+<section><h2>Learned book factors (Q)</h2><div class="table-scroll"><table><thead><tr><th>Book</th><th>Title</th>{% for factor in range(factorization.factors) %}<th>Factor {{ factor + 1 }}</th>{% endfor %}</tr></thead><tbody>{% for book in books %}<tr><th>{{ book.id }}</th><td>{{ book.title }}</td>{% for value in factorization.book_factors[book.id] %}<td>{{ value }}</td>{% endfor %}</tr>{% endfor %}</tbody></table></div></section>
+{% endif %}
+{% if error %}<p class="error">{{ error }}</p>{% endif %}
+{% if number in [12, 13, 16] %}
+<section class="reader-ratings"><h2>Books rated by {{ reader }}</h2>
+<p>Change a rating below, or add another catalog book to this reader's list. Changes last until the Flask process restarts.</p>
+{% if rated_books %}<div class="table-scroll"><table><thead><tr><th>Title</th><th>Author</th><th>Genres</th><th>Current rating</th><th>Update</th></tr></thead><tbody>
+{% for book in rated_books %}<tr><td>{{ book.title }}</td><td>{{ book.author }}</td><td>{{ book.genres|join(', ') }}</td><td>{{ book.rating }} / 5</td><td><form method="post" class="rating-form"><input type="hidden" name="reader" value="{{ reader }}"><input type="hidden" name="action" value="update_rating"><input type="hidden" name="book_id" value="{{ book.id }}"><label class="rating-label">Rating<select name="rating">{% for value in range(1, 6) %}<option value="{{ value }}" {% if value == book.rating|int %}selected{% endif %}>{{ value }}</option>{% endfor %}</select></label><button type="submit">Save</button></form></td></tr>{% endfor %}
+</tbody></table></div>{% else %}<p>No ratings are recorded for this reader.</p>{% endif %}
+{% if available_books %}<form method="post" class="add-book-form"><input type="hidden" name="reader" value="{{ reader }}"><input type="hidden" name="action" value="add_book"><label>Add a book<select name="book_id">{% for book in available_books %}<option value="{{ book.id }}">{{ book.title }} — {{ book.author }}</option>{% endfor %}</select></label><label>Rating<select name="rating">{% for value in range(1, 6) %}<option value="{{ value }}" {% if value == 5 %}selected{% endif %}>{{ value }}</option>{% endfor %}</select></label><button type="submit">Add book and rating</button></form>{% endif %}
+</section>
+{% endif %}
+{% if number != 21 %}<section><h2>Ranked books</h2>
+{% if rows %}<div class="table-scroll"><table><thead><tr><th>Title</th><th>Author</th><th>Genres</th><th>Pages</th>{% if number == 19 %}<th>Content</th><th>Collaborative</th><th>Popularity</th>{% elif number == 20 %}<th>Genre match</th><th>Author match</th><th>Page-range match</th>{% endif %}<th>Score</th></tr></thead><tbody>
+{% for book in rows %}<tr><td>{{ book.title }}</td><td>{{ book.author }}</td><td>{{ book.genres|join(', ') }}</td><td>{{ book.pages }}</td>{% if number == 19 %}<td>{{ book.content_score }}</td><td>{{ book.collaborative_score }}</td><td>{{ book.popularity_score }}</td>{% elif number == 20 %}<td>{{ book.genre_match }}</td><td>{{ book.author_match }}</td><td>{{ book.length_match }}</td>{% endif %}<td>{{ book.score }}</td></tr>{% endfor %}
+</tbody></table></div>{% else %}<p>No books match these settings.</p>{% endif %}
+</section>
+{% endif %}
+<p><a href="{{ url_for('home') }}">Return to assignments</a></p>
+{% endblock %}

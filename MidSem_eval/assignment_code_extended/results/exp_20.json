@@ -1,0 +1,101 @@
+{
+  "assignment": 20,
+  "title": "Knowledge-based recommendations",
+  "libraries": [
+    "Python",
+    "Flask",
+    "NumPy"
+  ],
+  "methodology": "Scores genre, author, and page-range constraints with fixed weights.",
+  "related_files": [
+    "exp_20.py",
+    "app.py",
+    "core.py",
+    "catalog.json",
+    "ratings.csv"
+  ],
+  "inputs": {
+    "genre": "Mystery",
+    "author": "",
+    "min_pages": 0,
+    "max_pages": 500
+  },
+  "results": [
+    {
+      "id": "B15",
+      "title": "A Study in Lanterns",
+      "author": "Nora Bell",
+      "genres": [
+        "Mystery",
+        "Thriller"
+      ],
+      "pages": 318,
+      "year": 2023,
+      "score": 0.75,
+      "genre_match": 1.0,
+      "author_match": 0.0,
+      "length_match": 1.0
+    },
+    {
+      "id": "B06",
+      "title": "The Copper Cipher",
+      "author": "Nora Bell",
+      "genres": [
+        "Mystery",
+        "Thriller"
+      ],
+      "pages": 301,
+      "year": 2017,
+      "score": 0.75,
+      "genre_match": 1.0,
+      "author_match": 0.0,
+      "length_match": 1.0
+    },
+    {
+      "id": "B01",
+      "title": "The Glass Orchard",
+      "author": "Mira Sen",
+      "genres": [
+        "Literary",
+        "Mystery"
+      ],
+      "pages": 286,
+      "year": 2021,
+      "score": 0.75,
+      "genre_match": 1.0,
+      "author_match": 0.0,
+      "length_match": 1.0
+    },
+    {
+      "id": "B09",
+      "title": "The Hidden Recipe",
+      "author": "Peter Vale",
+      "genres": [
+        "Cooking",
+        "Mystery"
+      ],
+      "pages": 256,
+      "year": 2016,
+      "score": 0.75,
+      "genre_match": 1.0,
+      "author_match": 0.0,
+      "length_match": 1.0
+    },
+    {
+      "id": "B04",
+      "title": "The Last Observatory",
+      "author": "Leena Das",
+      "genres": [
+        "Science Fiction",
+        "Mystery"
+      ],
+      "pages": 312,
+      "year": 2022,
+      "score": 0.75,
+      "genre_match": 1.0,
+      "author_match": 0.0,
+      "length_match": 1.0
+    }
+  ],
+  "terminal_output": "[{'id': 'B15', 'title': 'A Study in Lanterns', 'author': 'Nora Bell', 'genres': ['Mystery', 'Thriller'], 'pages': 318, 'year': 2023, 'score': 0.75, 'genre_match': 1.0, 'author_match': 0.0, 'length_match': 1.0}, {'id': 'B06', 'title': 'The Copper Cipher', 'author': 'Nora Bell', 'genres': ['Mystery', 'Thriller'], 'pages': 301, 'year': 2017, 'score': 0.75, 'genre_match': 1.0, 'author_match': 0.0, 'length_match': 1.0}, {'id': 'B01', 'title': 'The Glass Orchard', 'author': 'Mira Sen', 'genres': ['Literary', 'Mystery'], 'pages': 286, 'year': 2021, 'score': 0.75, 'genre_match': 1.0, 'author_match': 0.0, 'length_match': 1.0}, {'id': 'B09', 'title': 'The Hidden Recipe', 'author': 'Peter Vale', 'genres': ['Cooking', 'Mystery'], 'pages': 256, 'year': 2016, 'score': 0.75, 'genre_match': 1.0, 'author_match': 0.0, 'length_match': 1.0}, {'id': 'B04', 'title': 'The Last Observatory', 'author': 'Leena Das', 'genres': ['Science Fiction', 'Mystery'], 'pages': 312, 'year': 2022, 'score': 0.75, 'genre_match': 1.0, 'author_match': 0.0, 'length_match': 1.0}]"
+}

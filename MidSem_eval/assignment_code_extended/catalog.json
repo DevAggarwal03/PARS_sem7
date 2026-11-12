@@ -1,0 +1,17 @@
+[
+  {"id":"B01","title":"The Glass Orchard","author":"Mira Sen","genres":["Literary","Mystery"],"pages":286,"year":2021},
+  {"id":"B02","title":"Signals from Europa","author":"Jonah Reed","genres":["Science Fiction","Adventure"],"pages":344,"year":2019},
+  {"id":"B03","title":"A Map of Quiet Rivers","author":"Mira Sen","genres":["Literary","Nature"],"pages":238,"year":2018},
+  {"id":"B04","title":"The Last Observatory","author":"Leena Das","genres":["Science Fiction","Mystery"],"pages":312,"year":2022},
+  {"id":"B05","title":"Baking on Sundays","author":"Peter Vale","genres":["Cooking","Lifestyle"],"pages":192,"year":2020},
+  {"id":"B06","title":"The Copper Cipher","author":"Nora Bell","genres":["Mystery","Thriller"],"pages":301,"year":2017},
+  {"id":"B07","title":"Wild Garden Notes","author":"Asha Rao","genres":["Nature","Lifestyle"],"pages":224,"year":2023},
+  {"id":"B08","title":"Orbit of Ash","author":"Jonah Reed","genres":["Science Fiction","Literary"],"pages":278,"year":2024},
+  {"id":"B09","title":"The Hidden Recipe","author":"Peter Vale","genres":["Cooking","Mystery"],"pages":256,"year":2016},
+  {"id":"B10","title":"Footpaths of the North","author":"Asha Rao","genres":["Nature","Adventure"],"pages":330,"year":2021},
+  {"id":"B11","title":"The Midnight Archive","author":"Nora Bell","genres":["Mystery","Literary"],"pages":365,"year":2020},
+  {"id":"B12","title":"Small Plates, Big Flavours","author":"Peter Vale","genres":["Cooking","Lifestyle"],"pages":176,"year":2024},
+  {"id":"B13","title":"The Blue Comet","author":"Leena Das","genres":["Science Fiction","Adventure"],"pages":295,"year":2015},
+  {"id":"B14","title":"Letters from the Canopy","author":"Asha Rao","genres":["Nature","Literary"],"pages":210,"year":2019},
+  {"id":"B15","title":"A Study in Lanterns","author":"Nora Bell","genres":["Mystery","Thriller"],"pages":318,"year":2023}
+]

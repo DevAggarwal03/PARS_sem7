@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Bayesian risk | PARS{% endblock %}
+{% block content %}
+<h1>Practical VI - Bayesian risk minimization</h1>
+<p>Illustrative machine status classes and action losses. Each action's expected risk is the sum of class probability multiplied by its loss.</p>
+<table><tr><th>Action / true class</th>{% for name in classes %}<th>{{ name }}</th>{% endfor %}</tr>{% for action in actions %}<tr><th>{{ action }}</th>{% for value in losses[loop.index0] %}<td>{{ '%.0f'|format(value) }}</td>{% endfor %}</tr>{% endfor %}</table>
+<form method="post" class="horizontal">{% for name in classes %}<label>{{ name }} probability<input type="number" min="0" max="1" step="0.01" name="{{ name }}" value="{{ values[loop.index0] }}"></label>{% endfor %}<button>Choose action</button></form>
+{% if error %}<p class="error">{{ error }}</p>{% endif %}
+{% if result %}<div class="result"><h2>Triggered action: {{ result.action }}</h2><table><tr><th>Action</th><th>Expected risk</th></tr>{% for name, value in result.risks.items() %}<tr><td>{{ name }}</td><td>{{ '%.3f'|format(value) }}</td></tr>{% endfor %}</table></div>{% endif %}
+{% endblock %}

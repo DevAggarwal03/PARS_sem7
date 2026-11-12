@@ -1,0 +1,83 @@
+{
+  "assignment": 16,
+  "title": "Item-based nearest neighbors",
+  "libraries": [
+    "Python",
+    "Flask",
+    "NumPy"
+  ],
+  "methodology": "Predicts ratings from similar books in the reader's history.",
+  "related_files": [
+    "exp_16.py",
+    "app.py",
+    "core.py",
+    "catalog.json",
+    "ratings.csv"
+  ],
+  "inputs": {
+    "reader": "R01"
+  },
+  "results": [
+    {
+      "id": "B10",
+      "title": "Footpaths of the North",
+      "author": "Asha Rao",
+      "genres": [
+        "Nature",
+        "Adventure"
+      ],
+      "pages": 330,
+      "year": 2021,
+      "score": 4.6081
+    },
+    {
+      "id": "B07",
+      "title": "Wild Garden Notes",
+      "author": "Asha Rao",
+      "genres": [
+        "Nature",
+        "Lifestyle"
+      ],
+      "pages": 224,
+      "year": 2023,
+      "score": 4.6
+    },
+    {
+      "id": "B05",
+      "title": "Baking on Sundays",
+      "author": "Peter Vale",
+      "genres": [
+        "Cooking",
+        "Lifestyle"
+      ],
+      "pages": 192,
+      "year": 2020,
+      "score": 4.5455
+    },
+    {
+      "id": "B12",
+      "title": "Small Plates, Big Flavours",
+      "author": "Peter Vale",
+      "genres": [
+        "Cooking",
+        "Lifestyle"
+      ],
+      "pages": 176,
+      "year": 2024,
+      "score": 4.5455
+    },
+    {
+      "id": "B15",
+      "title": "A Study in Lanterns",
+      "author": "Nora Bell",
+      "genres": [
+        "Mystery",
+        "Thriller"
+      ],
+      "pages": 318,
+      "year": 2023,
+      "score": 4.3266
+    }
+  ],
+  "terminal_output": "[{'id': 'B10', 'title': 'Footpaths of the North', 'author': 'Asha Rao', 'genres': ['Nature', 'Adventure'], 'pages': 330, 'year': 2021, 'score': 4.6081}, {'id': 'B07', 'title': 'Wild Garden Notes', 'author': 'Asha Rao', 'genres': ['Nature', 'Lifestyle'], 'pages': 224, 'year': 2023, 'score': 4.6}, {'id': 'B05', 'title': 'Baking on Sundays', 'author': 'Peter Vale', 'genres': ['Cooking', 'Lifestyle'], 'pages': 192, 'year': 2020, 'score': 4.5455}, {'id': 'B12', 'title': 'Small Plates, Big Flavours', 'author': 'Peter Vale', 'genres': ['Cooking', 'Lifestyle'], 'pages': 176, 'year': 2024, 'score': 4.5455}, {'id': 'B15', 'title': 'A Study in Lanterns', 'author': 'Nora Bell', 'genres': ['Mystery', 'Thriller'], 'pages': 318, 'year': 2023, 'score': 4.3266}]"
+}
